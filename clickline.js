@@ -31,6 +31,6 @@ module.exports = function(line,table){
 	    +JSON.stringify(t)+","
 	    +JSON.stringify(tv)+")";
 
-	return insert.replace(/"/g, "'");
+	return { query: insert.replace(/"/g, "'"), parsed: parsed };
 
 }
