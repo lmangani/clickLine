@@ -1,8 +1,8 @@
 var lineToJSON = require('influx-line-protocol-parser');
 
-module.exports = function(line,table){
+module.exports = function(line,tableForce){
 
-	if (!table) var table = 'ts1';
+	var table = 'ts1';
 
 	var m = [], mv = [];
 	var t = [], tv = [];
@@ -12,6 +12,9 @@ module.exports = function(line,table){
 	} catch(e){
 		throw e;
 	}
+
+	if (tableForce) table = tableForce;
+	else if (parsed.measurement) table = parsed.measurement;
 
 	if (parsed.fields){
 	    parsed.fields.map(function (obj) { return Object.keys(obj) }).forEach(function(item){ m.push(item[0]) });

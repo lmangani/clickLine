@@ -1,6 +1,6 @@
 {
   "name": "clickline",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "InfluxDB Line query to Clickhouse Insert",
   "main": "clickline.js",
   "scripts": {
