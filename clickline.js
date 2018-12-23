@@ -26,14 +26,17 @@ module.exports = function(line,tableForce){
 	    parsed.tags.map(function (obj) { return Object.values(obj) }).forEach(function(item){ tv.push(item[0]) });
 	}
 
-	var values = [ "'"+parsed.measurement+"',"
-	    +parsed.timestamp+","
-	    +JSON.stringify(m)+","
-	    +JSON.stringify(mv)+","
-	    +JSON.stringify(t)+","
-	    +JSON.stringify(tv) ];
+	var values = [];
+	    values.push("'"+parsed.measurement+"'");
+	    values.push(parsed.timestamp);
+	    values.push(JSON.stringify(m));
+	    values.push(JSON.stringify(mv));
+	    values.push(JSON.stringify(t));
+	    values.push(JSON.stringify(tv));
 
 	var insert = "INSERT INTO "+table+"(entity,ts,m,mv,t,tv) VALUES ("+values.join(',')+")";
+
+	parsed.ts = new Date().getTime();
 
 	return { query: insert.replace(/"/g, "'"), parsed: parsed, values: values };
 
