@@ -29,15 +29,15 @@ module.exports = function(line,tableForce){
 	var values = [];
 	    values.push("'"+parsed.measurement+"'");
 	    values.push(parsed.timestamp);
-	    values.push(JSON.stringify(m));
-	    values.push(JSON.stringify(mv));
-	    values.push(JSON.stringify(t));
-	    values.push(JSON.stringify(tv));
+	    values.push(JSON.stringify(m).replace(/"/g, "'"));
+	    values.push(JSON.stringify(mv).replace(/"/g, "'"));
+	    values.push(JSON.stringify(t).replace(/"/g, "'"));
+	    values.push(JSON.stringify(tv).replace(/"/g, "'"));
 
 	var insert = "INSERT INTO "+table+"(entity,ts,m,mv,t,tv) VALUES ("+values.join(',')+")";
 
 	parsed.ts = new Date().getTime();
 
-	return { query: insert.replace(/"/g, "'"), parsed: parsed, values: values };
+	return { query: insert, parsed: parsed, values: values };
 
 }
