@@ -1,6 +1,6 @@
 {
   "name": "clickline",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "InfluxDB Line query to Clickhouse Insert",
   "main": "clickline.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "L. Mangani <lorenzo.mangani@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@qxip/influx-line-protocol-parser": "^0.2.1",
     "influx-line-protocol-parser": "^0.2.0"
   }
 }

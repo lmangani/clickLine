@@ -1,4 +1,4 @@
-var lineToJSON = require('influx-line-protocol-parser');
+var lineToJSON = require('@qxip/influx-line-protocol-parser');
 
 module.exports = function(line,tableForce){
 
@@ -27,7 +27,7 @@ module.exports = function(line,tableForce){
 	}
 
 	var values = [];
-	    values.push("'"+parsed.measurement+"'");
+	    values.push(parsed.measurement);
 	    values.push(parsed.timestamp);
 	    values.push(JSON.stringify(m).replace(/"/g, "'"));
 	    values.push(JSON.stringify(mv).replace(/"/g, "'"));
@@ -38,6 +38,6 @@ module.exports = function(line,tableForce){
 
 	parsed.ts = new Date().getTime();
 
-	return { query: insert, parsed: parsed, values: values };
+	return { query: insert, parsed: parsed, values: values.join('\t') };
 
 }
